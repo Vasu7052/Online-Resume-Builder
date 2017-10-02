@@ -37,21 +37,51 @@ This is empty on purpose! Your code to build the resume will go here.
  work.jobs = [
  	{ 
  		"employer" : "Oracle" ,
- 		"title" : "Java" 
+ 		"title" : "Java" ,
+ 		"years" : 1.5 ,
+		"years" : "2015-2019" ,
+		"description" : "Oracle is one of the largest vendors in the enterprise IT market and the shorthand name of its flagship product, a relational database management system (RDBMS) that's formally called Oracle Database. The database software sits at the center of many corporate IT environments, supporting a mix of transaction processing, business intelligence and analytics applications." ,
+ 		"city" : "Rohini, Delhi" 
 	},
 	{
 		"employer" : "IBM" ,
- 		"title" : "Software" 
+ 		"title" : "Software" ,
+ 		"years" : 1.2 ,
+		"years" : "2015-2019" ,
+		"description" : "IBM (International Business Machines) ranks among the world's largest information technology companies, providing a wide spectrum of hardware, software and services offerings." ,
+ 		"city" : "Rohini, Delhi" 
 	},
 	{
 		"employer" : "Apple" ,
- 		"title" : "IOS" 
+ 		"title" : "IOS" ,
+ 		"years" : 1.8 ,
+		"years" : "2015-2019" ,
+		"description" : "Apple was founded by Steven Jobs and Stephen Wozniak. Jobs and Wozniak had been friends in high school and in 1975 were members of The Homebrew Computer Club, a now-legendary group where electronics enthusiasts met to discuss the Altair 8800" ,
+ 		"city" : "Rohini, Delhi" 
 	} 
  ] ;
- work.years = 1.5 ;
- work.name = "MAIT" ;
- work.years = "2015-2019" ;
- work.city = "Rohini, Delhi" ;
+
+ var projects = {} ;
+ projects.project = [
+ 	{ 
+ 		"title" : "Java DB" ,
+ 		"date" : "6/7/2017" ,
+		"description" : "My Project is based on Oracle database" ,
+ 		"image" : "http://www.orasof.com/images/database.jpg" 
+	}/* ,
+	{
+		"title" : "IBM Software" ,
+ 		"date" : "20/3/2017" ,
+		"description" : "My Project is based on IBM Software" ,
+ 		"image" : "http://cdn.zmescience.com/wp-content/uploads/2011/11/IBM.jpg" 
+	},
+	{
+		"title" : "Apple IOS" ,
+ 		"date" : "15/12/2016" ,
+		"description" : "My Project is based on Apple IOS System" ,
+ 		"image" : "http://mobile.app-iptv.com/i.jpg" 
+	} */ 
+ ] ;
 
  var education = {
  	"schools" : [
@@ -85,8 +115,6 @@ This is empty on purpose! Your code to build the resume will go here.
 
  $("#header").prepend(replacedataRole) ;
  $("#header").prepend(replacedataName) ;
- 
-
 
  $("#topContacts").append(replacedataMobile) ;
  $("#topContacts").append(replacedataEmail) ;
@@ -102,20 +130,83 @@ This is empty on purpose! Your code to build the resume will go here.
  	$("#header").append(HTMLskillsStart) ;
  	for (var i = 0; i < bio.skills.length; i++) {
  		var replacedataskills = HTMLskills.replace("%data%" , bio.skills[i]) ;
- 		$("#header").append(replacedataskills) ;
+ 		$("#skills").append(replacedataskills) ;
+ 	}
+
+ 	displayWork();
+ 	displayProjects() ;
+
+ 	$("#mapDiv").append(googleMap) ;
+
+ 	//	console.log(locationizer(work)) ;
+
+ }
+
+ function displayWork(){
+
+ 	if (work.jobs.length > 0) {
+
+ 
+ 	for (var i = 0; i < work.jobs.length; i++) {
+
+ 		$("#workExperience").append(HTMLworkStart) ;
+ 		var replacedataEmployer = HTMLworkEmployer.replace("%data%" , work.jobs[i].employer) ;
+ 		var replacedataEmployerTitle = HTMLworkTitle.replace("%data%" , work.jobs[i].title) ;
+ 		var finalEmployer = replacedataEmployer + replacedataEmployerTitle ;
+ 		$(".work-entry:last").append(finalEmployer) ; // its a jQuery and . represents class and :last represents appending at last
+ 	
+ 		var replaceWorkDates = HTMLworkDates.replace("%data%" , work.jobs[i].years);
+ 		$(".work-entry:last").append(replaceWorkDates) ;
+
+ 		var replaceWorkDescription = HTMLworkDescription.replace("%data%" , work.jobs[i].description);
+ 		$(".work-entry:last").append(replaceWorkDescription) ; 
+
+ 		/* var replaceWorkCity = HTMLworkDescription.replace("%data%" , work.jobs[i].city);
+ 		$(".work-entry:last").append(replaceWorkCity) ; */
+
+ 	}
+
+ 	}
+ }
+
+ function displayProjects(){
+
+ 	for (var i = 0; i < projects.project.length; i++) {
+ 		$("#projects").append(HTMLprojectStart);
+ 		var replaceProjectTitle = HTMLprojectTitle.replace("%data%" , projects.project[i].title) ;
+ 		$(".project-entry:last").append(replaceProjectTitle);
+
+		var replaceProjectDescription = HTMLprojectDescription.replace("%data%" , projects.project[i].description) ;
+ 		$(".project-entry:last").append(replaceProjectDescription);
+
+ 		var replaceProjectDate = HTMLprojectDates.replace("%data%" , projects.project[i].date) ;
+ 		$(".project-entry:last").append(replaceProjectDate);
+
+ 		var replaceProjectImage = HTMLprojectImage.replace("%data%" , projects.project[i].image) ;
+ 		$(".project-entry:last").append(replaceProjectImage);
+
  	}
 
  }
 
- if (work.jobs.length > 0) {
+ $(document).click(function(loc){
 
- 	$("#workExperience").append(HTMLworkStart) ;
+ 	var x = loc.pageX ;
+ 	var y = loc.pageY ;
+
+ 	console.log("X : " + x + " Y : " + y) ;
+
+ });
+
+ function locationizer(work_obj){
+
+ 	var array = [] ;
+
  	for (var i = 0; i < work.jobs.length; i++) {
- 		var replacedataEmployer = HTMLworkEmployer.replace("%data%" , work.jobs[i].employer) ;
- 		var replacedataEmployerTitle = HTMLworkTitle.replace("%data%" , work.jobs[i].title) ;
- 		var finalEmployer = replacedataEmployer + replacedataEmployerTitle ;
- 		$(".work-entry:last").append(finalEmployer) ;
+ 		array.push(work.jobs[i].city) ;
  	}
+
+ 	return array ;
 
  }
  
