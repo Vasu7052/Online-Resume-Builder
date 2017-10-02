@@ -32,25 +32,66 @@ This is empty on purpose! Your code to build the resume will go here.
 
  } ;
 
- console.log(firstName) ;
+ var work = {} ;
+ work.position = "Advance Android Developer" ;
+ work.employer = "MySelf" ;
+ work.years = 1.5 ;
+ work.name = "MAIT" ;
+ work.years = "2015-2019" ;
+ work.city = "Rohini, Delhi" ;
+
+ var education = {
+ 	"schools" : [
+ 		{
+ 			"name" : "DAV public School" ,
+ 			"city" : "Pitumpura, Delhi" ,
+ 			"major" : ["Physics" , "Chemistry"] ,
+ 			"degree" : "12th" ,
+ 			"years" : "2003-2015"
+ 		},
+ 		{
+ 			"name" : "MAIT" ,
+ 			"city" : "Rohini, Delhi" ,
+ 			"major" : ["OOPS" , "DBMS"] ,
+ 			"degree" : "B.Tech" ,
+ 			"years" : "2015-2019"
+ 		}
+ 	]
+ };
 
  var replacedataName = HTMLheaderName.replace("%data%" , fullName) ;
  var replacedataRole = HTMLheaderRole.replace("%data%" , bio.role) ;
  var replacedataPic = HTMLbioPic.replace("%data%" , bio.photo_url) ;
- var replacedataWelcomeMsg = HTMLwelcomeMsg.replace("%data%" , bio,welcome) ;
- var replacedataskills = HTMLskills.replace("%data%" , bio.skills) ;
+ var replacedataWelcomeMsg = HTMLwelcomeMsg.replace("%data%" , bio.welcome) ;
 
- var replacedataMobile = HTMLheaderName.replace("%data%" , fullName) ;
- var replacedataEmail = HTMLheaderRole.replace("%data%" , bio.role) ;
- var replacedataGithub = HTMLbioPic.replace("%data%" , bio.photo_url) ;
- var replacedataEmail = HTMLheaderRole.replace("%data%" , bio.role) ;
- var replacedataGithub = HTMLbioPic.replace("%data%" , bio.photo_url) ;
+ var replacedataMobile = HTMLmobile.replace("%data%" , bio.contactInfo.mobile) ;
+ var replacedataEmail = HTMLemail.replace("%data%" , bio.contactInfo.email) ;
+ var replacedataGithub = HTMLgithub.replace("%data%" , bio.contactInfo.github) ;
+ var replacedataTwitter = HTMLtwitter.replace("%data%" , bio.contactInfo.twitter) ;
+ var replacedataLocation = HTMLlocation.replace("%data%" , bio.contactInfo.location) ;
 
- $("#header").prepend(replacedataName) ;
+ $("#header").append(replacedataName) ;
  $("#header").append(replacedataRole) ;
 
- $("#workExperience").append(replacedataPic) ;
 
+ $("#header").append(replacedataMobile) ;
+ $("#header").append(replacedataEmail) ;
+ $("#header").append(replacedataGithub) ;
+ $("#header").append(replacedataTwitter) ;
+ $("#header").append(replacedataLocation) ;
+
+ $("#header").append(replacedataPic) ;
+ $("#header").append(replacedataWelcomeMsg) ;
+
+ if (bio.skills.length > 0) {
+
+ 	$("#header").append(HTMLskillsStart) ;
+ 	for (var i = 0; i < bio.skills.length; i++) {
+ 		var replacedataskills = HTMLskills.replace("%data%" , bio.skills[i]) ;
+ 		$("#header").append(replacedataskills) ;
+ 	}
+
+ }
  
 
 
