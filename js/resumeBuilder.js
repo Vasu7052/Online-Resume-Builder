@@ -34,7 +34,20 @@ This is empty on purpose! Your code to build the resume will go here.
 
  var work = {} ;
  work.position = "Advance Android Developer" ;
- work.employer = "MySelf" ;
+ work.jobs = [
+ 	{ 
+ 		"employer" : "Oracle" ,
+ 		"title" : "Java" 
+	},
+	{
+		"employer" : "IBM" ,
+ 		"title" : "Software" 
+	},
+	{
+		"employer" : "Apple" ,
+ 		"title" : "IOS" 
+	} 
+ ] ;
  work.years = 1.5 ;
  work.name = "MAIT" ;
  work.years = "2015-2019" ;
@@ -70,15 +83,16 @@ This is empty on purpose! Your code to build the resume will go here.
  var replacedataTwitter = HTMLtwitter.replace("%data%" , bio.contactInfo.twitter) ;
  var replacedataLocation = HTMLlocation.replace("%data%" , bio.contactInfo.location) ;
 
- $("#header").append(replacedataName) ;
- $("#header").append(replacedataRole) ;
+ $("#header").prepend(replacedataRole) ;
+ $("#header").prepend(replacedataName) ;
+ 
 
 
- $("#header").append(replacedataMobile) ;
- $("#header").append(replacedataEmail) ;
- $("#header").append(replacedataGithub) ;
- $("#header").append(replacedataTwitter) ;
- $("#header").append(replacedataLocation) ;
+ $("#topContacts").append(replacedataMobile) ;
+ $("#topContacts").append(replacedataEmail) ;
+ $("#topContacts").append(replacedataGithub) ;
+ $("#topContacts").append(replacedataTwitter) ;
+ $("#topContacts").append(replacedataLocation) ;
 
  $("#header").append(replacedataPic) ;
  $("#header").append(replacedataWelcomeMsg) ;
@@ -89,6 +103,18 @@ This is empty on purpose! Your code to build the resume will go here.
  	for (var i = 0; i < bio.skills.length; i++) {
  		var replacedataskills = HTMLskills.replace("%data%" , bio.skills[i]) ;
  		$("#header").append(replacedataskills) ;
+ 	}
+
+ }
+
+ if (work.jobs.length > 0) {
+
+ 	$("#workExperience").append(HTMLworkStart) ;
+ 	for (var i = 0; i < work.jobs.length; i++) {
+ 		var replacedataEmployer = HTMLworkEmployer.replace("%data%" , work.jobs[i].employer) ;
+ 		var replacedataEmployerTitle = HTMLworkTitle.replace("%data%" , work.jobs[i].title) ;
+ 		var finalEmployer = replacedataEmployer + replacedataEmployerTitle ;
+ 		$(".work-entry:last").append(finalEmployer) ;
  	}
 
  }
