@@ -12,7 +12,7 @@ This is empty on purpose! Your code to build the resume will go here.
  var age = 21 ;
  var photo_url = "http://res.cloudinary.com/devsvasu/image/upload/v1506872088/nvvr8tdpfjrud9s4pmag.jpg" ;
  var welcome = "All the folks are welcome here!"
- var skills = ["Android" , "Guitar" , "Programming"];
+ var skills = ["Android" , "Playing Guitar" , "Programming" , "Saving The Universe" , "Delivering things" , "Awesomeness"];
 
   var bio = {
 
