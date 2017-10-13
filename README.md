@@ -1,8 +1,8 @@
 # Online-Resume-Builder
 
-<h3>This is a web Application of displaying cv of mine that uses complete javascript</h3>
+This is a web Application of displaying cv of mine that uses complete javascript
 
-<h2>Here are screenshots attached :</h2>
+# Screenshots
 
 <img src="https://github.com/androfly/Online-Resume-Builder/blob/master/screenshots/ss1.png?raw=true"></img>
 
